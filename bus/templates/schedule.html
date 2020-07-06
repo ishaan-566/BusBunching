@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+Schedule
+{% endblock title %}
+{% block heading %}
+Schedule
+{% endblock heading %}
+{% block body %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Bus</th>
+            <th>Stop</th>
+            <th>Arrival Time</th>
+            <th>Departure Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in schedule %}
+        <tr>
+            <td>{{ s.bus }}</td>
+            <td>{{ s.stop }}</td>
+            <td>{{ s.arrival }}</td>
+            <td>{{ s.departure }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+{% endblock body %}

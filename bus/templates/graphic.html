@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}
+Grpah
+{% endblock title %}
+{% block heading %}
+Graph
+{% endblock heading %}
+{% block body %}
+<img src="data:image/png;base64,{{ graphic|safe }}">
+{% endblock body %}

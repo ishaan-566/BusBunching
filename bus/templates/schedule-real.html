@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}
+Schedule
+{% endblock title %}
+{% block heading %}
+Schedule
+{% endblock heading %}
+{% block body %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Bus</th>
+            <th>Stop</th>
+            <th>Arrival Time</th>
+            <th>Departure Time</th>
+            <th>Status</th>
+            <th>Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for b in bus %}
+        <tr>
+            <td>{{ b.busstop.bus }}</td>
+            <td>{{ b.busstop.stop }}</td>
+            <td>{{ b.arrival }}</td>
+            <td>{{ b.departure }}</td>
+            <td>{{ b.status }}</td>
+            <td>
+                {% if 'MINs' in b.status %}
+                <a class="btn btn-info" href="{{ b.update }}">update</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+{% endblock body %}

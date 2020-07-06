@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+{{bus}}--{{stop}}--update
+{% endblock title %}
+{% block heading %}
+Update {{bus}} {{stop}}
+{% endblock heading %}
+{% block body %}
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">BUS :: {{bus}}</li>
+    <li class="list-group-item">STOP :: {{stop}}</li>
+    <li class="list-group-item">ARRIVAL TIME :: {{arrival}}</li>
+    <li class="list-group-item">DEPARTURE TIME :: {{departure}}</li>
+</ul>
+<h4>Enter minutes to update</h4>
+<form class="form-inline container" action="" method="POST">
+    {% csrf_token %}
+    <input class="form-control" type="number" name="min" id="">
+    <button class="btn btn-success" type="submit">submit</button>
+</form>
+{% endblock body %}

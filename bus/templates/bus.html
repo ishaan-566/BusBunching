@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+{{name}}
+{% endblock title %}
+{% block heading %}
+{{name|title}}
+{% endblock heading %}
+{% block body %}
+
+<ul class="list-group list-group-flush">
+    {% for b in list %}
+    <li class="list-group-item">
+        <a href="/{{ name }}-test/{{ b.name }}">{{b}}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock body %}
+    

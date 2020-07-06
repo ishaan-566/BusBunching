@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+
+        {% endblock title %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a href="{% url 'bus:home' %}" class="nav-link">Bus Bunching</a></li>
+            <li class="nav-item">
+                <form action="{% url 'bus:sys_time' %}" method="post" class="form-inline">
+                    {% csrf_token %}
+                    <input class="form-control mr-sm-2" type="text" name="time" id="time"
+                        value="{{request.session.time}}"><br />
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </li>
+            <li class="nav-item "><a class="btn btn-danger" href="{% url 'bus:reset' %}">Reset</a></li>
+            {% if request.session.time %}
+            <li class="nav-item "><a class="btn btn-primary" href="{% url 'bus:image' %}">Graph</a></li>
+            {% endif %}
+
+        </ul>
+    </nav>
+
+    <h1 style="padding: 10px;">{% block heading %}{% endblock heading %}</h1>
+    <div style="width:100%;height:5px;background-color: red;"></div>
+    {% block body %}
+    {% endblock body %}
+    <div class="jumbotron" style="margin-bottom:0">
+        <ul class="list-group list-group-flush">
+            {% if request.session.time %}
+            <li class="list-group-item">
+                <form action="{% url 'bus:jam' %}" method="post" class="form-inline">
+                    {% csrf_token %}
+                    <input class="form-control mr-sm-2" type="text" name="jam" id="jam" placeholder="Enter jam duration">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </li>
+            {% endif %}
+            <li class="list-group-item"><a href="{% url 'bus:schedule' %}">Bus ScheduleOriginal</a></li>
+            <li class="list-group-item"><a href="{% url 'bus:real-schedule' %}">Bus Schedule Real-Time</a></li>
+            <li class="list-group-item"><a href="{% url 'bus:bus' %}">Buses</a></li>
+            <li class="list-group-item"><a href="{% url 'bus:stop' %}">Stops</a></li>
+        </ul>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
